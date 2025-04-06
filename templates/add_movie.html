@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Película</title>
+    <style>
+        /* Configuración del fondo con el GIF */
+        body {
+            background-image: url('https://i.pinimg.com/originals/09/e4/f7/09e4f75a88c16b34bd570e6027e0ee4d.gif'); /* Asegúrate de que el URL sea válido */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor del encabezado */
+        .header {
+            position: relative;
+            top: 0;
+            width: 100%; /* Ocupa todo el ancho de la pantalla */
+            text-align: center; /* Centra el contenido horizontalmente */
+            margin-top: 20px; /* Separación superior */
+        }
+
+        .header h1 {
+            font-size: 48px; /* Título más grande */
+            color: #ffcc00;
+            text-transform: uppercase;
+            margin: 0;
+            display: inline-block; /* Asegura que el título y logo estén en línea */
+            vertical-align: middle;
+        }
+
+        .header img {
+            width: 60px; /* Tamaño ajustado del logo */
+            height: auto;
+            display: inline-block; /* Asegura que esté alineado con el texto */
+            vertical-align: middle;
+            margin-left: 10px; /* Espacio entre el título y el logo */
+        }
+
+        /* Contenedor principal */
+        .form-container {
+            background: rgba(200, 200, 255, 0.4);
+            width: 400px; /* Ajustar el ancho del formulario para hacerlo más compacto */
+            padding: 20px;
+            margin: 100px auto; /* Centra el formulario */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            text-align: left;
+        }
+
+        /* Estilo de los elementos del formulario */
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ffcc00;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor del encabezado con título y logo -->
+    <div class="header">
+        <h1>PopcornHour</h1>
+        <img src="https://art.pixilart.com/3960fa042925b96.png" alt="Logo">
+    </div>
+
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+        <form method="POST" action="/add_movie">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="genre">Género:</label>
+            <input type="text" id="genre" name="genre" required>
+
+            <label for="release_year">Año de Estreno:</label>
+            <input type="number" id="release_year" name="release_year" required>
+
+            <button type="submit">Guardar Película</button>
+        </form>
+    </div>
+</body>
+</html>

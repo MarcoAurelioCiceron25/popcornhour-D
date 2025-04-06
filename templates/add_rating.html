@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Calificación</title>
+    <style>
+        /* Fondo con el GIF proporcionado */
+        body {
+            background-image: url('https://i.makeagif.com/media/3-22-2016/48hGVQ.gif');
+            background-size: cover; /* Hace que el GIF ocupe toda la pantalla */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed; /* Fija el fondo mientras se desplaza la página */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Texto blanco para contraste */
+        }
+
+        /* Contenedor del encabezado */
+        .header {
+            position: relative;
+            text-align: center; /* Centra horizontalmente el contenido */
+            margin: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 48px; /* Tamaño grande del título */
+            color: #ffcc00; /* Color dorado */
+            text-transform: uppercase;
+            display: inline-block; /* Asegura alineación en línea */
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .header img {
+            width: 60px; /* Ajusta el tamaño del logo */
+            height: auto;
+            display: inline-block; /* Alineación en línea */
+            vertical-align: middle;
+            margin-left: 10px; /* Espacio entre el título y el logo */
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            width: 400px;
+            margin: 50px auto; /* Centra el contenedor del formulario */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Sombra alrededor */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            text-align: center; /* Centra el contenido numérico */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #ffcc00; /* Color del botón */
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #e6b800; /* Color más oscuro al hacer hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado con título y logo -->
+    <div class="header">
+        <h1>PopcornHour</h1>
+        <img src="https://art.pixilart.com/3960fa042925b96.png" alt="Logo">
+    </div>
+
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+        <h2>Agregar Calificación para "{{ movie.title }}"</h2>
+        <form method="POST">
+            <input type="number" name="score" min="1" max="10" placeholder="Ingresa una calificación del 1 al 10" required>
+            <button type="submit">Guardar Calificación</button>
+        </form>
+    </div>
+</body>
+</html>
+

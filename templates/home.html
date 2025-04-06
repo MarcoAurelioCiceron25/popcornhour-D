@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas y Series - PopcornHour</title>
+    <style>
+        /* Fondo con el GIF */
+        body {
+            background-image: url('https://25.media.tumblr.com/acd37cc89e0d542f3c32185971df88d0/tumblr_mkizruZ8081s4sajmo1_500.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Encabezado */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header .main-title {
+            font-size: 48px;
+            text-transform: uppercase;
+            color: #ffcc00;
+            margin: 0;
+        }
+
+        .header img {
+            width: 60px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            margin-top: 10px;
+            color: white;
+        }
+
+        /* Lista de películas */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column; /* Organiza contenido verticalmente */
+            overflow: hidden;
+        }
+
+        li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        /* Contenido de la película alineado a la izquierda */
+        .movie-content {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        /* Botón Ver */
+        .view-button-container {
+            text-align: right;
+        }
+
+        .view-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+
+        .view-button img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        /* Botones "Comentar" y "Calificar" */
+        .actions {
+            text-align: left;
+        }
+
+        .actions a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            border-radius: 5px;
+            margin-right: 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .actions a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Botón principal */
+        .add-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-button:hover {
+            background-color: #e6b800;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Botón flotante para salir de sesión */
+        .logout-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #C70039;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <div class="header">
+        <h1 class="main-title">PopcornHour <img src="https://art.pixilart.com/3960fa042925b96.png" alt="Logo"></h1>
+        <h2 class="subtitle">Películas y Series</h2>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <ul>
+            {% for movie in movies %}
+            <li>
+                <!-- Contenido de la película -->
+                <div class="movie-content">
+                    <strong>Título:</strong> {{ movie.title }} <br>
+                    <strong>Descripción:</strong> {{ movie.description }} <br>
+                    <strong>Género:</strong> {{ movie.genre }} <br>
+                    <strong>Año:</strong> {{ movie.release_year }}
+                </div>
+
+                <!-- Botón Ver -->
+                <div class="view-button-container">
+                    <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class="view-button">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Eye-icon.svg" alt="Ver"> Ver
+                    </a>
+                </div>
+
+                <!-- Botones debajo de cada cuadro -->
+                <div class="actions">
+                    <a href="{{ url_for('add_comment', movie_id=movie.id) }}">Agregar Comentario</a>
+                    <a href="{{ url_for('add_rating', movie_id=movie.id) }}">Calificar</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Botón para agregar películas -->
+        <div class="button-container">
+            <a href="{{ url_for('add_movie') }}" class="add-button">Agregar Película o Serie</a>
+        </div>
+    </div>
+
+    <!-- Botón flotante para salir de sesión -->
+    <a href="{{ url_for('logout') }}" class="logout-button">Salir de la sesión</a>
+</body>
+</html>
+
+
+
+
+
+
+

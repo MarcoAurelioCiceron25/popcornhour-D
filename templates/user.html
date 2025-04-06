@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link>
+    <meta charset="UTF-8">
+    <title>PopcornHour - Perfil</title>
+</head>
+<body>
+    <h1>Perfil de {{ current_user.username }}</h1>
+    <p><strong>Email:</strong> {{ current_user.email }}</p>
+    <p><strong>Rol:</strong> {{ current_user.role }}</p>
+    <h2>Comentarios Realizados</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>{{ comment.text }} - En la película: {{ comment.movie.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PopcornHour - Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>
+            PopcornHour
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+    </h1>
+    </header>
+    <div class="image-container">
+        <img src="https://i.pinimg.com/originals/fe/69/df/fe69df6206bc678b9f9231ee8dc70e94.jpg" alt="Centro Imagen" class="center-image">
+    </div>
+</body>
+</html>
+        <p>Hola, {{ current_user.username }}</p>
+        {% if current_user.role == 'moderator' %}
+            <a href="{{ url_for('add_movie') }}">Subir nueva película</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </header>
+    <img src="{{ url_for('static', filename='banner.jpg') }}" alt="Banner" class="full-width-img">
+    <main>
+        <h2>Películas Disponibles</h2>
+        <ul>
+            {% for movie in movies %}
+            <li>
+                <strong>{{ movie.title }}</strong>
+                <p>{{ movie.description }}</p>
+                <p><strong>Género:</strong> {{ movie.genre }} | <strong>Año:</strong> {{ movie.release_year }}</p>
+                <p>
+                    <a href="{{ url_for('rate_movie', movie_id=movie.id) }}">Calificar</a> |
+                    <a href="{{ url_for('comment_movie', movie_id=movie.id) }}">Comentar</a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

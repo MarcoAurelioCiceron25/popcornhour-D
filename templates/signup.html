@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Encabezado con logo -->
+    <header>
+        <h1>
+            PopcornHour
+            <img src="https://art.pixilart.com/3960fa042925b96.png" alt="Logo" class="logo">
+        </h1>
+    </header>
+
+    <!-- Contenedor con imagen de fondo -->
+    <div class="background-container">
+        <img src="https://preview.redd.it/3nny8so6rjc61.gif?format=png8&s=985bbae54adff6dc8923b419b2ee9eb901570dcc" alt="Imagen de fondo" class="background-image">
+
+        <!-- Formulario centrado sobre la imagen -->
+        <div class="form-overlay">
+            <h2>Crear Cuenta</h2>
+            <form method="POST" action="{{ url_for('signup') }}">
+                <input type="text" name="username" placeholder="Nombre de Usuario" required>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <select name="role" required>
+                    <option value="" disabled selected>Selecciona tu Rol</option>
+                    <option value="standard">Usuario Estándar</option>
+                    <option value="moderator">Moderador</option>
+                </select>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+</body>
+</html>

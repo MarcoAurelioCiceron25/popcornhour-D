@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de "{{ movie.title }}"</title>
+    <style>
+        /* Fondo con el GIF proporcionado */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.icegif.com/wp-content/uploads/icegif-1783.gif');
+            background-size: cover; /* Hace que el GIF ocupe toda la pantalla */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed; /* Fija el fondo mientras se desplaza la página */
+            margin: 0;
+            padding: 0;
+            color: white; /* Texto blanco para contraste sobre el fondo */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffcc00; /* Tono dorado para el título principal */
+            font-size: 36px;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .section h2 {
+            color: #007BFF; /* Título de sección en azul */
+            font-size: 24px;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: white; /* Asegura contraste en el texto */
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffcc00; /* Enlaces en dorado */
+        }
+
+        a:hover {
+            color: #e6b800; /* Enlaces más oscuros al hacer hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalles de "{{ movie.title }}"</h1>
+        <div class="section">
+            <h2>Información</h2>
+            <p><strong>Título:</strong> "{{ movie.title }}"</p>
+            <p><strong>Descripción:</strong> {{ movie.description }}</p>
+            <p><strong>Género:</strong> {{ movie.genre }}</p>
+            <p><strong>Año:</strong> {{ movie.release_year }}</p>
+        </div>
+        <div class="section">
+            <h2>Comentarios</h2>
+            <ul>
+                {% for comment in comments %}
+                <li>{{ comment.text }} - por {{ comment.user.username }}</li>
+                {% else %}
+                <li>No hay comentarios para esta película aún.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Calificaciones</h2>
+            <ul>
+                {% for rating in ratings %}
+                <li>Puntaje: {{ rating.score }} - por {{ rating.user.username }}</li>
+                {% else %}
+                <li>No hay calificaciones para esta película aún.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="section">
+            <a href="{{ url_for('add_comment', movie_id=movie.id) }}">Agregar Comentario</a> |
+            <a href="{{ url_for('add_rating', movie_id=movie.id) }}">Agregar Calificación</a>
+        </div>
+    </div>
+</body>
+</html>
